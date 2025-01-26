@@ -260,57 +260,60 @@
 
         // Particle effect (similar to the original example)
         const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-        const particles = [];
+const particles = [];
 
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 5 + 1;
-                this.speedX = Math.random() * 3 - 1.5;
-                this.speedY = Math.random() * 3 - 1.5;
-                this.color = 'rgba(255, 111, 97, 0.7)';
-            }
+class Particle {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 5 + 1;
+        this.speedX = Math.random() * 3 - 1.5;
+        this.speedY = Math.random() * 3 - 1.5;
+        this.color = 'rgba(255, 111, 97, 0.7)';
+    }
 
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-            }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
 
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fill();
-            }
-        }
+        // Si una partícula sale de los límites, se reinicia
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+    }
 
-        function createParticles() {
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
-            }
-        }
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+}
 
-        function handleParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((particle, index) => {
-                particle.update();
-                particle.draw();
+function createParticles() {
+    for (let i = 0; i < 100; i++) {
+        particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+    }
+}
 
-                if (particle.size > 0.5) particle.size -= 0.02;
-                if (particle.size <= 0) particles.splice(index, 1);
-            });
-            requestAnimationFrame(handleParticles);
-        }
+function handleParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
+    });
+    requestAnimationFrame(handleParticles);
+}
 
-        createParticles();
-        handleParticles();
+createParticles();
+handleParticles();
     </script>
 
     
