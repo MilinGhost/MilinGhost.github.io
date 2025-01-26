@@ -185,12 +185,14 @@
     <div class="letter">
         <h1>Nuestras primeras metas 💝</h1>
         <p>
-            Durante este tiempo que hemos pasado juntos, hemos descubierto muchos sueños y metas que ambos soñamos con cumplir.<br> <br>
+            Durante este tiempo que hemos pasado juntos, hemos descubierto muchos sueños y metas<br>
+            que ambos soñamos con cumplir.<br> <br>
 
             Por eso, hice una lista de metas a corto plazo que espero podamos volver realidad en este 2025. 💕
         </p>
-        <button class="btn" onclick="redirectToPage()">Volver ⬅️</button>
+        <button class="btn" onclick="redirectToPage()">Regresar ⬅️</button>
         <button class="btn" id="showTimelineBtn">Ver metas 👩‍❤️‍💋‍👨</button>
+        <button class="btn" onclick="AvancePage()">Siguiente ➡️</button>
     </div>
 
     <!-- Línea de tiempo, inicialmente oculta -->
@@ -237,7 +239,7 @@
         </div>
         <div class="timeline-step future">
             <span class="icon">💜</span>
-            Estas son algunas de nuestras metas a corto plazo, trabajemos para hacerlas realidad, amor de mi vida
+            Conozcamos restaurantes, cafeterías, cines, parques, piscinas, miradores, karaokes, gyms, mercados, spa's, pueblos, ciudades, paises, aventurate conmigo, amor de mi vida
         </div>
         <button class="btn" onclick="closeSurprise()">Cerrar</button>
     </div>
@@ -257,7 +259,6 @@
             timeline.style.display = 'block';  // Mostrar la timeline
         });
 
-        // Particle effect (similar to the original example)
         const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 
@@ -312,7 +313,7 @@ function handleParticles() {
 }
 
 createParticles();
-handleParticles();
+handleParticles();  
     </script>
 
     
@@ -336,6 +337,9 @@ handleParticles();
         }
         function redirectToPage() {
         window.location.href = "index.html"; // Cambia el nombre por el de tu archivo.
+    }
+    function AvancePage() {
+        window.location.href = "novia.html"; // Cambia el nombre por el de tu archivo.
     }
     </script>
 
