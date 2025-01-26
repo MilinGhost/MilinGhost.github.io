@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestro Camino Juntos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #ffafbd, #ffc3a0);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+            box-sizing: border-box;
+            flex-direction: column;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #ff6f61;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 111, 97, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Estilos para la carta */
+        .letter {
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .timeline {
+            display: none; /* Escondemos la timeline hasta que se haga clic */
+            max-width: 650px;
+            max-height: 900px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            flex: 1;
+        }
+
+        .timeline-step {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .upcoming {
+            color: orange;
+            font-style: italic;
+        }
+
+        .future {
+            color: #333;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .btn-back {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #f76c6c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #e85a5a;
+        }
+
+        .btn-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Floating effect */
+        .floating {
+            position: absolute;
+            z-index: -1;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design for smaller screens */
+        @media (max-width: 600px) {
+            .timeline {
+                padding: 15px;
+            }
+
+            .timeline-step {
+                font-size: 1rem;
+            }
+        }
+        .letter h1 {
+            font-size: 2rem;
+            color: #ff6f61;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .letter p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .btn:hover {
+            background: #e63946;
+            transform: scale(1.1);
+        }
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles"></canvas>
+
+    <!-- Carta con mensaje -->
+    <div class="letter">
+        <h1>Nuestras primeras metas 💝</h1>
+        <p>
+            Durante este tiempo que hemos pasado juntos, hemos descubierto muchos sueños y metas<br>
+            que ambos soñamos con cumplir.<br> <br>
+
+            Por eso, hice una lista de metas a corto plazo que espero podamos volver realidad en este 2025. 💕
+        </p>
+        <button class="btn" onclick="redirectToPage()">Volver ⬅️</button>
+        <button class="btn" id="showTimelineBtn">Ver metas 👩‍❤️‍💋‍👨</button>
+    </div>
+
+    <!-- Línea de tiempo, inicialmente oculta -->
+    <div class="timeline" id="timeline">
+        <div class="timeline-step completed">
+            <span class="icon">✔️</span>
+            Hablar por primera vez y conocernos poco a poco
+        </div>
+        <div class="timeline-step completed">
+            <span class="icon">✔️</span>
+            Conectar en todo sentido y enamorarnos
+        </div>
+        <div class="timeline-step completed">
+            <span class="icon">✔️</span>
+            Formalizar la relación y aprendernos a amar
+        </div>
+        <div class="timeline-step completed">
+            <span class="icon">✔️</span>
+            Establecer una relación segura, honesta y confiable
+        </div>
+        <div class="timeline-step upcoming">
+            <span class="icon">⏳</span>
+            Viajar para vernos en persona - <b>Pronto...</b>
+        </div>
+        <div class="timeline-step future">
+            <span class="icon">💗</span>
+            Crear recuerdos inolvidables juntos en persona, disfrutar de cada momento y fortalecer nuestro vínculo
+        </div>
+        <div class="timeline-step future">
+            <span class="icon">👵</span>
+            Conocer a nuestras familias y conseguir el apoyo incondicional de ellos
+        </div>
+        <div class="timeline-step future">
+            <span class="icon">🐶☃️</span>
+            Disfrutar con nuestra bebé Kira Jamona, y nuestros niños Chiqui y Crispeta
+        </div>
+        <div class="timeline-step future">
+            <span class="icon">🛫</span>
+            Recorrer Ecuador y Colombia juntos, conociendo playas, pueblos, lugares mágicos, culturas y más
+        </div>
+        <div class="timeline-step future">
+            <span class="icon">💫</span>
+            Empezar a vivir fechas especiales en persona como cumpleaños, aniversario, navidad, halloween
+        </div>
+        <div class="timeline-step future">
+            <span class="icon">💜</span>
+            Estas son algunas de nuestras metas a corto plazo, trabajemos para hacerlas realidad, amor de mi vida
+        </div>
+        <button class="btn" onclick="closeSurprise()">Cerrar</button>
+    </div>
+
+    <!-- Script para mostrar la timeline cuando se hace clic en el botón -->
+    <script>
+        function closeSurprise() {
+            document.getElementById('timeline').style.display = 'none';
+            document.querySelector('.letter').style.display = 'block';  // Mostrar la carta
+        }
+        const showTimelineBtn = document.getElementById('showTimelineBtn');
+        const timeline = document.getElementById('timeline');
+        const letter = document.querySelector('.letter');
+
+        showTimelineBtn.addEventListener('click', function() {
+            letter.style.display = 'none';  // Ocultar la carta
+            timeline.style.display = 'block';  // Mostrar la timeline
+        });
+
+        // Particle effect (similar to the original example)
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 5 + 1;
+                this.speedX = Math.random() * 3 - 1.5;
+                this.speedY = Math.random() * 3 - 1.5;
+                this.color = 'rgba(255, 111, 97, 0.7)';
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+            }
+
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+        }
+
+        function createParticles() {
+            for (let i = 0; i < 100; i++) {
+                particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+            }
+        }
+
+        function handleParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((particle, index) => {
+                particle.update();
+                particle.draw();
+
+                if (particle.size > 0.5) particle.size -= 0.02;
+                if (particle.size <= 0) particles.splice(index, 1);
+            });
+            requestAnimationFrame(handleParticles);
+        }
+
+        createParticles();
+        handleParticles();
+    </script>
+
+    
+
+    <!-- Generate many floating roses -->
+    <script>
+        const flowers = ['rosa.png'];  // Asegúrate de que la imagen 'rosa.png' esté en la misma carpeta o proporción el path correcto
+        const totalItems = 15;  // Número de rosas flotantes
+
+        // Generar imágenes flotantes de rosas
+        for (let i = 0; i < totalItems; i++) {
+            const item = document.createElement('img');
+            const flower = flowers[Math.floor(Math.random() * flowers.length)];
+            item.src = flower;
+            item.classList.add('floating');
+            item.style.width = `${Math.random() * 50 + 30}px`;  // Tamaño aleatorio
+            item.style.top = `${Math.random() * 100}vh`;  // Posición vertical aleatoria
+            item.style.left = `${Math.random() * 100}vw`;  // Posición horizontal aleatoria
+            item.style.animationDuration = `${Math.random() * 4 + 8}s`;  // Duración de animación aleatoria
+            document.body.appendChild(item);
+        }
+        function redirectToPage() {
+        window.location.href = "index.html"; // Cambia el nombre por el de tu archivo.
+    }
+    </script>
+
+</body>
+</html>
