@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Para ti, mi amor!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #ffafbd, #ffc3a0);
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .card h1 {
+            font-size: 2rem;
+            color: #ff6f61;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .heart {
+            font-size: 3rem;
+            color: #ff6f61;
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            color: #fff;
+            background: #ff6f61;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(255, 111, 97, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #e63946;
+            transform: scale(1.1);
+        }
+
+        .surprise {
+            display: none;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #fff;
+            text-align: center;
+        }
+
+        .surprise h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .surprise p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .surprise img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+            animation: zoomIn 2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        /* Animation for floating objects */
+        .floating {
+            position: absolute;
+            z-index: -1;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Responsive Design for smaller screens */
+        @media (max-width: 600px) {
+            .card {
+                padding: 15px;
+            }
+
+            .card h1 {
+                font-size: 1.8rem;
+            }
+
+            .card p {
+                font-size: 1rem;
+            }
+
+            .heart {
+                font-size: 2.5rem;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            .surprise h1 {
+                font-size: 2rem;
+            }
+
+            .surprise p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles"></canvas>
+
+    <div class="card">
+        <h1>Descubre cuánto te amo ❤️</h1>
+        <p>
+            Describirte mi amor, es una de las cosas que más me gusta hacer<br>
+            Y por eso, aquí vengo a dedicarte unas hermosas palabras que espero ames. 💕 <br>
+        </p>
+        <div class="heart">💞</div>
+        <button class="btn" onclick="backPage()">Regresar ⬅️</button>
+        <button class="btn" onclick="showSurprise()">Abrir 💌</button>
+        <button class="btn" onclick="redirectToPage()">Siguiente ➡️</button>
+
+<script>
+    function redirectToPage() {
+        window.location.href = "sorpresa.html"; // Cambia el nombre por el de tu archivo.
+    }
+    function backPage() {
+        window.location.href = "index.html"; // Cambia el nombre por el de tu archivo.
+    }
+</script>
+    </div>
+
+    <div class="surprise" id="surprise">
+        <h1>¡Te amo, amor de mi vida! 🌟</h1>
+        <p style="font-size:20px;">
+            Este mes ha sido solo el comienzo de una aventura hermosa juntos.<br>
+            Cada día que pasa, me enamoro más de ti, cada día conozco más una parte de tu ser<br>
+            que me hace sentir el hombre más afortunado del mundo. 💜<br><br>
+
+            Ni en mis mejores sueños me imaginé tener a una mujer como tú,<br>
+            una mujer que es increíble en todos los sentidos.<br>
+            Amo la mujer que has construido a lo largo de tu vida,<br>
+            amo cómo has tenido la fuerza suficiente para salir adelante,<br>
+            superando obstáculos y convirtiéndote en el ser maravilloso que eres hoy. 💜<br><br>
+
+            Contigo, he descubierto que el amor no tiene límites,<br>
+            que en tus ojos puedo ver mi futuro,<br>
+            y que en tu sonrisa encuentro la paz que siempre soñé.<br>
+            Eres mi compañera, mi refugio, mi inspiración, y cada momento a tu lado lo atesoro con todo mi corazón. 💜<br><br>
+
+            Gracias por ser mi alegría, mi fuerza y mi motivación.<br>
+            Prometo amarte, cuidarte y apoyarte en cada paso de este camino que compartimos.<br>
+            Prometo nunca fallarte, ni decepcionarte, ni defraudarte, tú eres mi destino.<br>
+            ¡Te amo más de lo que las palabras pueden expresar! 💗
+        </p>
+        <button class="btn" onclick="closeSurprise()">Cerrar</button>
+    </div>
+
+    <!-- Generate many floating images -->
+    <script>
+        const flowers = ['rosa.png'];  // Add the image paths of your choice
+        const totalItems = 15;  // Number of floating items
+
+        // Function to randomly generate floating items on the screen
+        for (let i = 0; i < totalItems; i++) {
+            const item = document.createElement('img');
+            const flower = flowers[Math.floor(Math.random() * flowers.length)];
+            item.src = flower;
+            item.classList.add('floating');
+            item.style.width = `${Math.random() * 50 + 30}px`;  // Random size
+            item.style.top = `${Math.random() * 100}vh`;  // Random vertical position
+            item.style.left = `${Math.random() * 100}vw`;  // Random horizontal position
+            item.style.animationDuration = `${Math.random() * 4 + 8}s`;  // Random animation duration
+            document.body.appendChild(item);
+        }
+    </script>
+
+    <script>
+        function showSurprise() {
+            document.getElementById('surprise').style.display = 'flex';
+        }
+
+        function closeSurprise() {
+            document.getElementById('surprise').style.display = 'none';
+        }
+
+        const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+
+class Particle {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 5 + 1;
+        this.speedX = Math.random() * 3 - 1.5;
+        this.speedY = Math.random() * 3 - 1.5;
+        this.color = 'rgba(255, 111, 97, 0.7)';
+    }
+
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Si una partícula sale de los límites, se reinicia
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+    }
+
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+}
+
+function createParticles() {
+    for (let i = 0; i < 100; i++) {
+        particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+    }
+}
+
+function handleParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
+    });
+    requestAnimationFrame(handleParticles);
+}
+
+createParticles();
+handleParticles();
+    </script>
+</body>
+
+</html>
