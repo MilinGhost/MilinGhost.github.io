@@ -1,333 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Para ti, mi amor!</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Invitación a San Valentín</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
         body {
-            margin: 0;
-            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(to bottom right, #ffafbd, #ffc3a0);
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            overflow: hidden;
-            box-sizing: border-box;
+            margin: 0;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.8);
-            width: 90%;
-            max-width: 500px;
+        .container {
+            background: white;
+            padding: 25px;
             border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .card h1 {
-            font-size: 2rem;
-            color: #ff6f61;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .card p {
-            font-size: 1.1rem;
-            color: #333;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .heart {
-            font-size: 3rem;
-            color: #ff6f61;
-            margin-bottom: 20px;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.3);
-            }
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            color: #fff;
-            background: #ff6f61;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(255, 111, 97, 0.5);
-            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 450px;
             transition: all 0.3s ease;
         }
 
-        .btn:hover {
-            background: #e63946;
+        h1 {
+            color: #d63384;
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        #siBtn {
+            background: #ff4d79;
+            color: white;
+            box-shadow: 0 3px 10px rgba(255, 77, 121, 0.5);
+        }
+
+        #siBtn:hover {
+            background: #ff3366;
             transform: scale(1.1);
         }
 
-        .surprise {
-            display: none;
-            background: rgba(0, 0, 0, 0.9);
-            position: fixed;
-            top: 0;
-            left: 0;
+        #noBtn {
+            background: #6c757d;
+            color: white;
+            box-shadow: 0 3px 10px rgba(108, 117, 125, 0.5);
+        }
+
+        #noBtn:hover {
+            background: #545b62;
+            transform: scale(1.1);
+        }
+
+        #gifContainer img, 
+        #happyGifContainer img, 
+        #happyGifContainer2 img, 
+        #happyGifContainer3 img, 
+        #happyGifContainer4 img, 
+        #sadGifContainer img, 
+        #sadGifContainer1 img, 
+        #sadGifContainer2 img {
             width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: #fff;
-            text-align: center;
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
 
-        .surprise h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            animation: fadeInUp 1.5s ease-out;
+        @keyframes explosion {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+            visibility: visible;
         }
-
-        .surprise p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            line-height: 1.8;
-            animation: fadeInUp 2s ease-out;
+        30% {
+            transform: scale(1.5);
+            opacity: 0.7;
         }
-
-        .surprise img {
-            width: 150px;
-            height: auto;
-            margin-bottom: 20px;
-            animation: zoomIn 2s ease-out;
+        50% {
+            transform: scale(3);
+            opacity: 0.3;
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        80% {
+            transform: scale(6);
+            opacity: 0.1;
         }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.5);
-            }
-            to {
-                transform: scale(1);
-            }
+        100% {
+            transform: scale(10);
+            opacity: 0;
+            visibility: hidden;
         }
+    }
 
-        /* Animation for floating objects */
-        .floating {
-            position: absolute;
-            z-index: -1;
-            animation: float 10s ease-in-out infinite;
+    .explosion {
+        animation: explosion 1s forwards;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 200px;
+        background-color: rgba(255, 165, 0, 0.8); /* Color de la explosión */
+        border-radius: 50%;
+        z-index: 1000;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px rgba(255, 100, 0, 0.8);
+        
         }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-30px) rotate(5deg);
-            }
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-        }
-
-        #particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* Responsive Design for smaller screens */
-        @media (max-width: 600px) {
-            .card {
-                padding: 15px;
-            }
-
-            .card h1 {
-                font-size: 1.8rem;
-            }
-
-            .card p {
-                font-size: 1rem;
-            }
-
-            .heart {
-                font-size: 2.5rem;
-            }
-
-            .btn {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-
-            .surprise h1 {
-                font-size: 2rem;
-            }
-
-            .surprise p {
-                font-size: 1rem;
-            }
-        }
+        
     </style>
 </head>
-
 <body>
-    <canvas id="particles"></canvas>
-
-    <div class="card">
-        <h1>¡Feliz primer mes, mi amor! ❤️</h1>
-        <p>
-            Este primer mes ha sido el mejor mes de mi vida.<br>
-            Gracias por llenar mi vida de amor, alegría y sonrisas. 💕 <br><br> 
-
-            Esta es una pequeño regalito que quiero darte para celebrar nuestro cumplemes<br>
-            El primer mes de muchos, mi vida 💕
-        </p>
-        <div class="heart" style="margin-top:-20px;">💖</div>
-        <button class="btn" onclick="redirectToPage()">Siguiente ➡️</button>
-
-<script>
-    function redirectToPage() {
-        window.location.href = "carta.html"; // Cambia el nombre por el de tu archivo.
-    }
-</script>
+    <!-- Contenedor de explosión -->
+    <div id="explosionContainer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; display: none;">
+        <img src="explosion.gif" alt="Explosion" style="width: 100%; height: 100%; object-fit: cover;">
     </div>
 
-    <div class="surprise" id="surprise">
-        <h1>¡Te amo, amor de mi vida! 🌟</h1>
-        <p style="font-size:20px;">
-            Este mes ha sido solo el comienzo de una aventura hermosa juntos.<br>
-            Cada día que pasa, me enamoro más de ti, cada día conozco más una parte de tu ser<br>
-            que me hace sentir el hombre más afortunado del mundo. 💜<br><br>
+    <div class="container">
+        <div id="gifContainer">
+            <img id="gifContainerImg" src="mocha.gif" alt="Ositos Iniciales">
+        </div>
+        <div id="happyGifContainer" style="display: none;">
+            <img src="mocha5final.gif" alt="Ositos Felices">
+        </div>
+        <div id="happyGifContainer2" style="display: none;">
+            <img src="mocha6final.gif" alt="Ositos Felices">
+        </div>
+        <div id="happyGifContainer3" style="display: none;">
+            <img src="mocha7final.gif" alt="Ositos Felices">
+        </div>
+        <div id="happyGifContainer4" style="display: none;">
+            <img src="mocha9final.gif" alt="Ositos Felices">
+        </div>
+        <div id="sadGifContainer" style="display: none;">
+            <img src="perrito.png" alt="Osito Triste">
+        </div>
+        <div id="sadGifContainer1" style="display: none;">
+            <img src="perrito.png" alt="Osito Triste">
+        </div>
+        <div id="sadGifContainer2" style="display: none;">
+            <img src="perrito.png" alt="Osito Triste">
+        </div>
 
-            Ni en mis mejores sueños me imaginé tener a una mujer como tú,<br>
-            una mujer que es increíble en todos los sentidos.<br>
-            Amo la mujer que has construido a lo largo de tu vida,<br>
-            amo cómo has tenido la fuerza suficiente para salir adelante,<br>
-            superando obstáculos y convirtiéndote en el ser maravilloso que eres hoy. 💜<br><br>
+        <h1 id="question">¿Quieres ser mi San Valentín? 💖</h1>
+        <div id="messageContainer" style="display: none;"></div>
 
-            Contigo, he descubierto que el amor no tiene límites,<br>
-            que en tus ojos puedo ver mi futuro,<br>
-            y que en tu sonrisa encuentro la paz que siempre soñé.<br>
-            Eres mi compañera, mi refugio, mi inspiración, y cada momento a tu lado lo atesoro con todo mi corazón. 💜<br><br>
-
-            Gracias por ser mi alegría, mi fuerza y mi motivación.<br>
-            Prometo amarte, cuidarte y apoyarte en cada paso de este camino que compartimos.<br>
-            Prometo nunca fallarte, ni decepcionarte, ni defraudarte, tú eres mi destino.<br>
-            ¡Te amo más de lo que las palabras pueden expresar! 💗
-        </p>
-        <button class="btn" onclick="closeSurprise()">Cerrar</button>
+        <button id="siBtn">Sí 💕</button>
+        <button id="noBtn">No 😭</button>
     </div>
+    <audio id="explosionSound" src="explosion.mp3" preload="auto"></audio>
 
-    <!-- Generate many floating images -->
-    <script>
-        const flowers = ['rosa.png'];  // Add the image paths of your choice
-        const totalItems = 15;  // Number of floating items
-
-        // Function to randomly generate floating items on the screen
-        for (let i = 0; i < totalItems; i++) {
-            const item = document.createElement('img');
-            const flower = flowers[Math.floor(Math.random() * flowers.length)];
-            item.src = flower;
-            item.classList.add('floating');
-            item.style.width = `${Math.random() * 50 + 30}px`;  // Random size
-            item.style.top = `${Math.random() * 100}vh`;  // Random vertical position
-            item.style.left = `${Math.random() * 100}vw`;  // Random horizontal position
-            item.style.animationDuration = `${Math.random() * 4 + 8}s`;  // Random animation duration
-            document.body.appendChild(item);
-        }
-    </script>
-
-    <script>
-        function showSurprise() {
-            document.getElementById('surprise').style.display = 'flex';
-        }
-
-        function closeSurprise() {
-            document.getElementById('surprise').style.display = 'none';
-        }
-
-        const canvas = document.getElementById('particles');
-const ctx = canvas.getContext('2d');
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const particles = [];
-
-class Particle {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.size = Math.random() * 5 + 1;
-        this.speedX = Math.random() * 3 - 1.5;
-        this.speedY = Math.random() * 3 - 1.5;
-        this.color = 'rgba(255, 111, 97, 0.7)';
-    }
-
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        // Si una partícula sale de los límites, se reinicia
-        if (this.x > canvas.width) this.x = 0;
-        if (this.x < 0) this.x = canvas.width;
-        if (this.y > canvas.height) this.y = 0;
-        if (this.y < 0) this.y = canvas.height;
-    }
-
-    draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.fill();
-    }
-}
-
-function createParticles() {
-    for (let i = 0; i < 100; i++) {
-        particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
-    }
-}
-
-function handleParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-    });
-    requestAnimationFrame(handleParticles);
-}
-
-createParticles();
-handleParticles();
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>
