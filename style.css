@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  color: #5a0f5f;
+  overflow-x: hidden;
+}
+
+/* Fondo animado */
+.background-animation {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(270deg, #ffb3d9, #c77dff, #ff8fab);
+  background-size: 600% 600%;
+  animation: gradient 12s ease infinite;
+  z-index: -3;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Pétalos */
+.petals::after {
+  content: "🌸 🌷 🌺 💐 🌼";
+  position: fixed;
+  top: -50px;
+  width: 100%;
+  font-size: 2.2rem;
+  animation: fall 12s linear infinite;
+  z-index: -1;
+}
+
+@keyframes fall {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(120vh); }
+}
+
+/* Brillos */
+.sparkles::before {
+  content: "✨ ✨ ✨";
+  position: fixed;
+  bottom: 10%;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+  opacity: 0.6;
+  animation: sparkle 6s ease-in-out infinite;
+  z-index: -2;
+}
+
+@keyframes sparkle {
+  0%,100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* Progreso corazones */
+.progress {
+  position: fixed;
+  top: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.scene {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.scene.active {
+  display: flex;
+}
+
+h1 { font-size: 2.7rem; }
+h2 { font-size: 2.3rem; }
+h3 { font-size: 1.7rem; margin-top: 20px; }
+
+p {
+  font-size: 1.3rem;
+  max-width: 650px;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 14px 32px;
+  border: none;
+  border-radius: 30px;
+  background: #ff8fab;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+.garden {
+  display: flex;
+  gap: 20px;
+  font-size: 3rem;
+}
+
+.flower {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.flower.bloom {
+  transform: scale(1.6) rotate(10deg);
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+#no {
+  background: #b583d9;
+}
+
+.hidden {
+  display: none;
+}
+
