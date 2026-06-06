@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>❤️ Cuenta de Amor Pendiente ❤️</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffd8e7, #ffeaf2, #fff7fa);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 6px solid white;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .header h1 {
+      color: #e91e63;
+      margin-top: 15px;
+      font-size: 40px;
+    }
+
+    .header p {
+      color: #777;
+      margin-top: 10px;
+    }
+
+    .days-love {
+      margin-top: 15px;
+      color: #e91e63;
+      font-weight: bold;
+    }
+
+    .total {
+      background: white;
+      border-radius: 25px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(233, 30, 99, 0.15);
+    }
+
+    .total h2 {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .total span {
+      font-size: 60px;
+      font-weight: bold;
+      color: #e91e63;
+    }
+
+    .item {
+      background: white;
+      border-radius: 25px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
+
+    .item:hover {
+      transform: translateY(-4px);
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .emoji {
+      font-size: 32px;
+    }
+
+    .titulo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #5b1167;
+    }
+
+    .contador {
+      font-size: 55px;
+      font-weight: bold;
+      color: #e91e63;
+      margin: 15px 0;
+    }
+
+    .acciones {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .sumar {
+      background: #ff4081;
+      color: white;
+    }
+
+    .restar {
+      background: #ffe0ea;
+      color: #e91e63;
+    }
+
+    .sumar:hover,
+    .restar:hover {
+      transform: scale(1.05);
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 25px;
+      animation: subir 8s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes subir {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+
+    .love-card {
+      background: white;
+      border-radius: 25px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 10px 25px rgba(233, 30, 99, 0.12);
+    }
+
+    .frase-amor {
+      font-size: 18px;
+      color: #5b1167;
+      text-align: center;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .dias-juntos {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 22px;
+      color: #e91e63;
+      font-weight: bold;
+    }
+
+    .heart-bg {
+      position: fixed;
+      bottom: -50px;
+      pointer-events: none;
+      opacity: 0.35;
+      z-index: -1;
+      animation: corazonSubiendo 15s linear forwards;
+    }
+
+    @keyframes corazonSubiendo {
+      from {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      to {
+        transform: translateY(-120vh) rotate(360deg);
+
+        opacity: 0;
+      }
+    }
+
+    .sparkles::before,
+    .sparkles::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      background-image: radial-gradient(white 1px, transparent 1px);
+
+      background-size: 50px 50px;
+
+      opacity: 0.4;
+
+      animation: estrellas 20s linear infinite;
+    }
+
+    @keyframes estrellas {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-100px);
+      }
+    }
+
+    .sparkles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .sparkles::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background-image: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.9) 1px,
+        transparent 2px
+      );
+
+      background-size: 80px 80px;
+
+      animation: estrellas 15s linear infinite;
+    }
+
+    .sparkles::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background-image: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.6) 1px,
+        transparent 2px
+      );
+
+      background-size: 120px 120px;
+
+      animation: estrellas 25s linear infinite reverse;
+    }
+
+    @keyframes estrellas {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-120px);
+      }
+    }
+
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: 0.25;
+      z-index: 0;
+      animation: mover 20s infinite alternate ease-in-out;
+    }
+
+    .blob1 {
+      width: 300px;
+      height: 300px;
+      background: #ff5f9e;
+      top: 10%;
+      left: -100px;
+    }
+
+    .blob2 {
+      width: 250px;
+      height: 250px;
+      background: #ffb6d5;
+      bottom: 10%;
+      right: -50px;
+    }
+
+    .blob3 {
+      width: 200px;
+      height: 200px;
+      background: #ffcce0;
+      top: 50%;
+      left: 50%;
+    }
+
+    @keyframes mover {
+      from {
+        transform: translate(0, 0);
+      }
+
+      to {
+        transform: translate(80px, -50px);
+      }
+    }
+
+    .reason-card {
+      background: white;
+      border-radius: 25px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 10px 25px rgba(233, 30, 99, 0.12);
+      text-align: center;
+    }
+
+    .reason-card h2 {
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    .reason-card p {
+      font-size: 18px;
+      color: #5b1167;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+    .achievements-card {
+      background: white;
+      border-radius: 25px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(233, 30, 99, 0.12);
+    }
+
+    .achievements-card h2 {
+      text-align: center;
+      color: #e91e63;
+      margin-bottom: 15px;
+    }
+
+    .logro {
+      background: #fff3f8;
+      border-left: 5px solid #ff4081;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      color: #5b1167;
+      font-weight: 600;
+    }
+
+    .secret-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .secret-content {
+      max-width: 600px;
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      position: relative;
+      animation: aparecer 0.4s ease;
+    }
+
+    .secret-content h2 {
+      color: #e91e63;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .secret-content p {
+      line-height: 1.8;
+      color: #555;
+    }
+
+    #cerrarCarta {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    @keyframes aparecer {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+  <body>
+    <div id="corazones"></div>
+    <div class="floating-hearts"></div>
+
+    <div class="container">
+      <div class="header">
+        <div class="galeria-card">
+          <div class="galeria">
+            <!-- <img src="fotos/1.jpg" /> -->
+            <img id="fotoPrincipal" src="fotos/1.jpg" alt="Nosotros">
+            <img src="fotos/2.jpg" />
+            <img src="fotos/3.jpg" />
+            <img src="fotos/4.jpeg" />
+          </div>
+        </div>
+
+        <h1>❤️ Cuenta de Amor Pendiente ❤️</h1>
+        <div class="love-card">
+          <div id="fraseAmor" class="frase-amor"></div>
+
+          <div id="diasJuntos" class="dias-juntos"></div>
+          <div class="reason-card">
+            <h2>❤️ Razón del día ❤️</h2>
+            <p id="razonDia"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="total">
+        <h2>Deuda acumulada</h2>
+
+        <span id="totalGeneral">0</span>
+        <div class="achievements-card">
+          <h2>🏆 Logros Desbloqueados</h2>
+
+          <div id="logros"></div>
+        </div>
+      </div>
+
+      <div id="lista"></div>
+    </div>
+
+    <div class="sparkles"></div>
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+    <script src="app.js"></script>
+  </body>
+
+  <div id="secretModal" class="secret-modal">
+    <div class="secret-content">
+      <span id="cerrarCarta">&times;</span>
+
+      <h2>💌 Carta Ultra Secreta 💌</h2>
+
+      <p>
+        Mi amor, Si encontraste esto, significa que eres más curiosa de lo que
+        imaginaba. Esta página nació porque eres una persona muy especial para
+        mí y quería tener un rincón donde quedaran guardadas todas las cosas
+        bonitas que me pides, pero también todas las que me encanta darte.
+        Gracias por hacerme sonreír incluso en los días difíciles. Gracias por
+        cada abrazo, cada conversación y cada momento. Te quiero muchísimo. ❤️ —
+        Tu novio.
+      </p>
+    </div>
+  </div>
+</html>
+
