@@ -1,0 +1,1416 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffb3d9" />
+    <title>🎂 Feliz cumpleaños, María José 💖</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        color: #5a0f5f;
+        overflow-x: hidden;
+      }
+
+      /* Fondo animado */
+      .background-animation {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(270deg, #ffb3d9, #c77dff, #ff8fab);
+        background-size: 600% 600%;
+        animation: gradient 12s ease infinite;
+        z-index: -3;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Pétalos */
+      .petals::after {
+        content: "🌸 🌷 🌺 💐 🌼";
+        position: fixed;
+        top: -50px;
+        width: 100%;
+        font-size: 2.2rem;
+        animation: fall 12s linear infinite;
+        z-index: -1;
+      }
+
+      @keyframes fall {
+        from {
+          transform: translateY(-100px);
+        }
+        to {
+          transform: translateY(120vh);
+        }
+      }
+
+      /* Brillos */
+      .sparkles::before {
+        content: "✨ ✨ ✨";
+        position: fixed;
+        bottom: 10%;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+        opacity: 0.6;
+        animation: sparkle 6s ease-in-out infinite;
+        z-index: -2;
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+
+      /* Progreso corazones */
+      .progress {
+        position: fixed;
+        top: 15px;
+        width: 100%;
+        text-align: center;
+        font-size: 1.5rem;
+      }
+
+      .scene {
+        min-height: 100vh;
+        padding: 40px 20px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .scene.active {
+        display: flex;
+      }
+
+      h1 {
+        font-size: 2.7rem;
+      }
+      h2 {
+        font-size: 2.3rem;
+      }
+      h3 {
+        font-size: 1.7rem;
+        margin-top: 20px;
+      }
+
+      p {
+        font-size: 1.3rem;
+        max-width: 650px;
+        margin-bottom: 30px;
+      }
+
+      button {
+        padding: 14px 32px;
+        border: none;
+        border-radius: 30px;
+        background: #ff8fab;
+        color: #fff;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      button:hover {
+        transform: scale(1.08);
+      }
+
+      .garden {
+        display: flex;
+        gap: 20px;
+        font-size: 3rem;
+      }
+
+      .flower {
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .flower.bloom {
+        transform: scale(1.6) rotate(10deg);
+      }
+
+      .buttons {
+        display: flex;
+        gap: 20px;
+      }
+
+      #no {
+        background: #b583d9;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      /* Cumpleaños: misma identidad visual que index.html y anhelos.html. */
+      body {
+        background: #ffd6ec;
+        line-height: 1.65;
+      }
+      .background-animation {
+        background: linear-gradient(270deg, #ffb3d9, #c77dff, #ff8fab, #ffc8dd);
+        background-size: 800% 800%;
+        animation: gradient 14s ease infinite;
+        z-index: -5;
+      }
+      .cloud {
+        position: fixed;
+        width: 320px;
+        height: 130px;
+        background: rgba(255, 255, 255, 0.25);
+        border-radius: 100px;
+        filter: blur(18px);
+        z-index: -4;
+        pointer-events: none;
+      }
+      .cloud1 {
+        top: 20%;
+        left: -40%;
+        animation: cloudMove 50s linear infinite;
+      }
+      .cloud2 {
+        top: 65%;
+        left: -50%;
+        animation: cloudMove 70s linear infinite;
+      }
+      @keyframes cloudMove {
+        to {
+          transform: translateX(180vw);
+        }
+      }
+      button,
+      .primary {
+        padding: 14px 30px;
+        border: 0;
+        border-radius: 35px;
+        background: linear-gradient(135deg, #ff8fab, #c77dff);
+        color: white;
+        font-size: 1.05rem;
+        cursor: pointer;
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+        text-decoration: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        touch-action: manipulation;
+      }
+      button:hover,
+      .primary:hover {
+        transform: scale(1.06);
+      }
+      button:focus-visible,
+      a:focus-visible,
+      textarea:focus-visible {
+        outline: 3px solid #771a80;
+        outline-offset: 4px;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 13px 20px;
+        background: #ffeaf2e8;
+        box-shadow: 0 3px 20px #5a0f5f12;
+        gap: 12px;
+      }
+      .brand {
+        font-size: 19px;
+        font-weight: 700;
+        color: #e91e63;
+      }
+      .music {
+        padding: 9px 15px;
+        font-size: 12px;
+        box-shadow: none;
+      }
+      .header-note {
+        display: none;
+      }
+      .progress {
+        position: static;
+        width: auto;
+        font-size: 20px;
+        letter-spacing: 3px;
+      }
+      .progress span {
+        display: inline-block;
+      }
+      .scene {
+        min-height: 100svh;
+        padding: 110px 22px 55px;
+        width: 100%;
+        margin: auto;
+        animation: appear 0.55s ease;
+      }
+      .scene.active {
+        display: flex;
+      }
+      .scene > * {
+        max-width: 800px;
+        width: 100%;
+      }
+      h1 {
+        font-size: clamp(2.3rem, 6vw, 3.5rem);
+        line-height: 1.2;
+        animation: heartbeat 2.5s infinite;
+      }
+      h2 {
+        font-size: clamp(2rem, 5vw, 2.7rem);
+        line-height: 1.25;
+      }
+      h3 {
+        font-size: 1.6rem;
+      }
+      h1,
+      h2,
+      h3 {
+        color: #5a0f5f;
+        margin: 20px 0;
+      }
+      h1 em,
+      h2 em {
+        font-style: normal;
+        color: #e91e63;
+      }
+      p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin: 16px auto 25px;
+      }
+      .intro {
+        max-width: 650px;
+      }
+      .eyebrow {
+        color: #a02779;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      .small {
+        font-size: 13px;
+        color: #78507e;
+      }
+      .heart-big {
+        font-size: 4.5rem;
+        animation: floatHeart 3s ease-in-out infinite;
+        margin: 12px 0;
+      }
+      .hero .primary {
+        margin: 10px 0;
+      }
+      .hero-foot {
+        display: none;
+      }
+      .section-top {
+        display: block;
+      }
+      .section-top p {
+        max-width: 650px;
+      }
+      .divider {
+        border: 0;
+      }
+      .scene-nav {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+      }
+      .back {
+        background: #ffffff80;
+        color: #803580;
+        box-shadow: none;
+        font-size: 14px;
+        padding: 12px 20px;
+      }
+      .scene-count {
+        font-size: 13px;
+        color: #7e4879;
+        margin-top: 15px;
+      }
+      .constellation {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 30px 18px;
+        margin: 10px auto;
+        background: rgba(255, 255, 255, 0.45);
+        border-radius: 25px;
+        box-shadow: 0 10px 25px #e91e6314;
+      }
+      .constellation svg {
+        display: none;
+      }
+      .star {
+        background: transparent;
+        box-shadow: none;
+        color: #5b1167;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border-radius: 20px;
+        padding: 12px 8px;
+        flex: 0 1 100px;
+      }
+      .star b {
+        font-size: 42px;
+        transition: transform 0.4s;
+      }
+      .star span {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .star.seen {
+        background: #fff8;
+      }
+      .star.seen b {
+        transform: scale(1.15) rotate(8deg);
+      }
+      .progress-note {
+        font-size: 14px;
+        color: #a02779;
+        margin: 15px auto;
+      }
+      .cake-section {
+        text-align: center;
+      }
+      .cake-section > p {
+        max-width: 650px;
+      }
+      .cake-wrap {
+        flex-shrink: 0;
+      }
+      .wish-field {
+        display: block;
+        max-width: 500px;
+        width: 100%;
+        border: 2px solid #f1bfda;
+        border-radius: 18px;
+        background: #fff9;
+        padding: 16px;
+        color: #5a0f5f;
+        font:
+          16px/1.6 "Segoe UI",
+          sans-serif;
+        min-height: 80px;
+        resize: vertical;
+        margin: 0 auto 20px;
+      }
+      .wish-field::placeholder {
+        color: #956088;
+      }
+      .cake-section .small {
+        display: block;
+        margin: 12px auto;
+      }
+      .wish-result {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #e91e63;
+      }
+      .letter-closed {
+        background: #fff9;
+        border-radius: 25px;
+        padding: 30px 20px;
+        box-shadow: 0 10px 25px #e91e6326;
+      }
+      .envelope {
+        font-size: 5rem;
+        animation: floatHeart 3s ease-in-out infinite;
+      }
+      .letter {
+        background: white;
+        border-radius: 25px;
+        padding: 35px clamp(22px, 5vw, 50px);
+        box-shadow: 0 15px 35px #e91e6326;
+        text-align: left;
+        color: #555;
+      }
+      .letter h3 {
+        text-align: center;
+        color: #e91e63;
+      }
+      .letter p {
+        font-size: 1.1rem;
+        line-height: 1.9;
+      }
+      .letter .signature {
+        font-size: 1.5rem;
+        color: #e91e63;
+        font-weight: 600;
+      }
+      .gifts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin: 20px auto;
+      }
+      .gift {
+        background: white;
+        border-radius: 25px;
+        padding: 24px 18px;
+        box-shadow: 0 10px 25px #e91e6326;
+        transition: transform 0.3s;
+      }
+      .gift:hover {
+        transform: translateY(-4px);
+      }
+      .gift .eyebrow {
+        font-size: 11px;
+        color: #a06d92;
+      }
+      .gift .icon {
+        font-size: 40px;
+        margin: 12px;
+      }
+      .gift h3 {
+        font-size: 22px;
+        color: #e91e63;
+      }
+      .gift p {
+        font-size: 15px;
+        color: #666;
+      }
+      .gift button {
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+      .gift.chosen {
+        outline: 3px solid #ff4081;
+        background: #fff3f8;
+      }
+      .end-star {
+        font-size: 65px;
+        animation: heartbeat 2.5s infinite;
+      }
+      .final p {
+        max-width: 650px;
+      }
+      .footer {
+        text-align: center;
+        padding: 15px;
+        color: #8a487f;
+        font-size: 12px;
+      }
+      .dialog {
+        border: 0;
+        border-radius: 25px;
+        background: white;
+        color: #5b1167;
+        padding: 30px;
+        max-width: 550px;
+        width: calc(100% - 32px);
+        box-shadow: 0 20px 60px #5a0f5f44;
+        text-align: center;
+      }
+      .dialog::backdrop {
+        background: #3b124b99;
+      }
+      .dialog .icon {
+        font-size: 40px;
+      }
+      .dialog h3 {
+        color: #e91e63;
+      }
+      .dialog p {
+        font-size: 1.1rem;
+      }
+      .dialog button {
+        font-size: 14px;
+      }
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 22px;
+        background: white;
+        color: #e91e63;
+        box-shadow: 0 10px 30px #5a0f5f33;
+        border-radius: 20px;
+        z-index: 80;
+        max-width: 90%;
+        width: max-content;
+        font-size: 14px;
+        text-align: center;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      #confetti {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 50;
+      }
+      .petal {
+        position: absolute;
+        top: -30px;
+        width: 9px;
+        height: 16px;
+        animation: confettiFall var(--duration) ease-in forwards;
+      }
+      @keyframes confettiFall {
+        to {
+          transform: translate(var(--drift), 110vh) rotate(700deg);
+          opacity: 0;
+        }
+      }
+      #hearts {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .floating-heart {
+        position: absolute;
+        bottom: -50px;
+        animation: heartUp linear infinite;
+        opacity: 0.55;
+      }
+      @keyframes heartUp {
+        to {
+          transform: translateY(-120vh) rotate(30deg);
+          opacity: 0;
+        }
+      }
+      @keyframes heartbeat {
+        0%,
+        50%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.05);
+        }
+      }
+      @keyframes floatHeart {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .reveal {
+        animation: appear 0.6s ease;
+      }
+      @media (max-width: 700px) {
+        .gifts {
+          grid-template-columns: 1fr;
+          max-width: 420px;
+        }
+        .scene {
+          padding: 100px 18px 35px;
+        }
+        .brand {
+          font-size: 15px;
+        }
+        .progress {
+          font-size: 15px;
+          letter-spacing: 0;
+        }
+        .music {
+          font-size: 10px;
+          padding: 8px 10px;
+        }
+        header {
+          padding: 12px 10px;
+        }
+        .star {
+          flex-basis: 85px;
+        }
+        .constellation {
+          gap: 8px;
+          padding: 20px 8px;
+        }
+        .letter {
+          padding: 25px 22px;
+        }
+        p {
+          font-size: 1.1rem;
+        }
+        .primary {
+          padding: 14px 24px;
+          font-size: 1rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *:before,
+        *:after {
+          animation: none !important;
+          transition: none !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+        .petal {
+          display: none;
+        }
+      }
+      .cake-wrap {
+        height: 230px;
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        margin: 30px auto;
+        position: relative;
+        width: 290px;
+      }
+      .cake {
+        width: 240px;
+        height: 106px;
+        border-radius: 50% / 15%;
+        background: linear-gradient(90deg, #b77783, #e5a9af 40%, #ca8c98);
+        position: relative;
+        box-shadow: 0 25px 50px #0004;
+      }
+      .cake:before {
+        content: "";
+        position: absolute;
+        inset: -16px 0 auto;
+        height: 35px;
+        border-radius: 50%;
+        background: #f7d8cb;
+        box-shadow: 0 9px 0 #eec3bd;
+      }
+      .cake:after {
+        content: "♡";
+        font: 38px Georgia;
+        color: #ffe6d3;
+        position: absolute;
+        top: 33px;
+        left: 100px;
+      }
+      .plate {
+        position: absolute;
+        bottom: -10px;
+        width: 280px;
+        height: 25px;
+        border: 1px solid #e7c58c55;
+        border-radius: 50%;
+        background: #e7c58c15;
+        z-index: -1;
+      }
+      .candle {
+        position: absolute;
+        width: 12px;
+        height: 62px;
+        background: repeating-linear-gradient(
+          45deg,
+          #fff0d7 0 8px,
+          #c6979f 9px 15px
+        );
+        left: 114px;
+        top: -75px;
+        z-index: 1;
+        border-radius: 3px;
+      }
+      .wick {
+        position: absolute;
+        width: 2px;
+        height: 9px;
+        left: 5px;
+        top: -7px;
+        background: #624c42;
+      }
+      .flame {
+        position: absolute;
+        width: 19px;
+        height: 32px;
+        border-radius: 80% 20% 65% 35%;
+        background: linear-gradient(20deg, #ff9a50, #ffe6a1 65%, #fff8df);
+        top: -36px;
+        left: -3px;
+        transform: rotate(-13deg);
+        box-shadow:
+          0 0 25px #ffcf84,
+          0 0 70px #ffcf8477;
+        animation: flicker 1s infinite alternate;
+        transform-origin: bottom;
+      }
+      .blown .flame {
+        opacity: 0;
+        animation: none;
+        transition: opacity 0.5s;
+      }
+      @keyframes flicker {
+        to {
+          transform: rotate(8deg) scale(0.9, 1.06);
+        }
+      }
+      .scene > button {
+        width: auto;
+        max-width: 100%;
+      }
+      .scene > .cake-wrap {
+        width: 290px;
+        max-width: 100%;
+      }
+      .plate {
+        z-index: 0;
+      }
+      .cake {
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-animation"></div>
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div id="hearts" aria-hidden="true"></div>
+    <div id="confetti" aria-hidden="true"></div>
+    <header>
+      <div class="brand">Para ti 💜</div>
+      <div class="progress" aria-label="Progreso de la sorpresa"></div>
+      <button class="music" id="music" aria-pressed="false">
+        ♫ Activar música
+      </button>
+    </header>
+    <main>
+      <section class="hero scene active">
+        <div>
+          <div class="eyebrow date">22 de octubre · Tu día</div>
+          <div class="heart-big" aria-hidden="true">🎂💖</div>
+          <h1>¡Feliz cumpleaños,<br />María José! 💜</h1>
+          <p class="intro">
+            Corazón, hoy es tu día… 🥰<br />Y preparé algo muy especial para
+            recordarte lo feliz que me hace que existas. ¿Me acompañas?
+          </p>
+          <button class="primary" id="begin">Comenzar tu sorpresa 🎁</button>
+          <p class="small">Hecho con amor. Para recorrerlo despacito.</p>
+        </div>
+        <div class="hero-foot">
+          CAPÍTULO III &nbsp; / &nbsp; PARA LA NIÑA DE MIS OJOS
+        </div>
+      </section>
+      <section class="chapter divider scene" id="estrellas">
+        <div class="section-top">
+          <div>
+            <div class="eyebrow">🌸 Un jardín de cosas bonitas 🌸</div>
+            <h2>
+              Hoy también florece<br /><em>todo lo que siento por ti 💖</em>
+            </h2>
+          </div>
+          <p>
+            ¿Recuerdas las flores? Hoy cada una guarda algo que quiero decirte.
+            Tócalas y descubre tus mensajes. 🌷
+          </p>
+        </div>
+        <div class="constellation">
+          <svg
+            viewBox="0 0 1000 400"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M140 248 L300 116 L480 208 L640 88 L800 184 L660 316 L480 208"
+              fill="none"
+              stroke="#e7c58c"
+              stroke-width="1"
+              stroke-dasharray="4 7"
+            /></svg
+          ><button
+            class="star"
+            data-star="0"
+            aria-label="Descubrir: Tu sonrisa"
+          >
+            <b>🌸</b><span>Tu sonrisa</span></button
+          ><button
+            class="star"
+            data-star="1"
+            aria-label="Descubrir: Tu forma de ser"
+          >
+            <b>🌷</b><span>Tu esencia</span></button
+          ><button class="star" data-star="2" aria-label="Descubrir: Tu abrazo">
+            <b>🌹</b><span>Tu abrazo</span></button
+          ><button
+            class="star"
+            data-star="3"
+            aria-label="Descubrir: Tus sueños"
+          >
+            <b>🌺</b><span>Tus sueños</span></button
+          ><button
+            class="star"
+            data-star="4"
+            aria-label="Descubrir: Lo nuestro"
+          >
+            <b>🌼</b><span>Lo nuestro</span></button
+          ><button class="star" data-star="5" aria-label="Descubrir: Tú">
+            <b>💐</b><span>Simplemente tú</span>
+          </button>
+        </div>
+        <p class="progress-note" id="progress" aria-live="polite">
+          0 de 6 flores descubiertas
+        </p>
+      </section>
+      <section class="chapter divider cake-section scene" id="deseo">
+        <div class="eyebrow">🎂 Una vuelta más al sol 🎂</div>
+        <h2>Cierra los ojos.<br /><em>Pide algo bonito.</em></h2>
+        <p>
+          Este momento es tuyo. Piensa en eso que te hace ilusión, respira… y
+          apaga la vela.
+        </p>
+        <div
+          class="cake-wrap"
+          aria-label="Torta rosada con una vela encendida"
+          role="img"
+          id="cake"
+        >
+          <div class="plate"></div>
+          <div class="cake">
+            <div class="candle">
+              <div class="wick"></div>
+              <div class="flame"></div>
+            </div>
+          </div>
+        </div>
+        <label class="small" for="wish" style="margin-bottom: 10px"
+          >Si quieres, escribe tu deseo aquí.</label
+        ><textarea
+          id="wish"
+          class="wish-field"
+          maxlength="500"
+          placeholder="Este año deseo…"
+        ></textarea
+        ><button class="primary" id="blow">
+          Ya pedí mi deseo · Apagar la vela ✧</button
+        ><span class="small" id="privacy"
+          >Tu deseo no se envía ni se guarda. Es solo para este momento.</span
+        >
+        <p class="wish-result" id="wish-result" hidden aria-live="polite">
+          Que la vida te sorprenda tan bonito<br />como tú me sorprendiste a mí.
+        </p>
+      </section>
+      <section class="chapter divider scene" id="carta">
+        <div class="eyebrow">💌 Una cartita para ti 💌</div>
+        <h2>Un sobre pequeño.<br /><em>Todo lo que siento.</em></h2>
+        <div class="letter-closed" id="closed">
+          <div class="envelope" aria-hidden="true">✉</div>
+          <p>Para María José.<br />De alguien que volvería a elegirte.</p>
+          <button
+            id="open-letter"
+            class="primary"
+            aria-expanded="false"
+            aria-controls="letter"
+          >
+            Abre tu carta ♡
+          </button>
+        </div>
+        <article class="letter" id="letter" hidden>
+          <div class="eyebrow">22 de octubre · Con todo mi cariño</div>
+          <h3>Maria José,</h3>
+          <p>
+            Hoy cumple años mi persona favorita. Y aunque me encantaría poder
+            envolverte el mundo y ponerle un moño, por ahora te hice uno
+            pequeñito: este rincón donde todo está pensado para ti.
+          </p>
+          <p>
+            Mientras pensaba en qué regalarte, me di cuenta de que también
+            quería decirte algo que a veces se queda corto en un mensaje: me
+            hace muy feliz tenerte en mi vida. Por eso preparé este pequeño
+            detalle, para que puedas volver a él cuando quieras y recordar que
+            hay alguien que piensa en ti todos los días con muchísimo amor.
+          </p>
+          <p>
+            Me gusta conocerte cada día un poquito más. Descubrir tus maneras,
+            conocer y escuchar esas historias que todavía no me has contado 
+            y seguir aprendiendo en que te emociona, qué te preocupa 
+            y qué te hace sentir querida. Me gusta
+            que una conversación contigo pueda empezar con cualquier bobada y
+            terminar siendo lo mejor de mi día. Y que, después de hablar de
+            tantas cosas, todavía me queden ganas de seguir escuchándote.
+          </p>
+          <p>
+            Para este nuevo año de tu vida deseo que tengas motivos para reír
+            a carcajadas. Que tus sueños encuentren espacio. Que te sientas
+            querida, amada, escuchada y acompañada. Que podamos celebrar cada
+            logro como se merece.
+          </p>
+          <p>
+            Y quiero estar ahí: para aplaudirte, para escucharte, para llevarte
+            flores porque sí. Para un cafecito, un helado, una película o uno de
+            esos abrazos en los que nada más importa que nosotros.
+          </p>
+          <p>
+            Ojalá hoy puedas sentir un poquito de toda la alegría que tú traes a
+            mi vida. Yo voy a aprovechar cada oportunidad para consentirte, para
+            recordarte lo mucho que te quiero y para seguir construyendo
+            recuerdos contigo. De esos que, tiempo después, nos hagan mirarnos y
+            decir: «¿Te acuerdas?», con ganas de volver a vivirlos.
+          </p>
+          <p>
+            <strong>Feliz cumpleaños a mi persona favorita.</strong><br />Qué bonito que
+            naciste. Qué suerte que nos encontramos. Y qué ilusión todo lo que
+            todavía nos falta vivir.
+          </p>
+          <div class="signature">Con amor, Juan Camilo.</div>
+        </article>
+      </section>
+      <section class="chapter divider scene" id="regalos">
+        <div class="section-top">
+          <div>
+            <div class="eyebrow">🎁 Nueve citas pendientes contigo 🎁</div>
+            <h2>Tú eliges el plan.<br /><em>Yo quiero vivirlo contigo.</em></h2>
+          </div>
+          <p>
+            Cada opción es una excusa para vernos, consentirnos y sumar otro
+            recuerdo bonito. Elige los que quieras, toma una captura y
+            muéstramelos: tenemos muchas citas por cumplir.
+          </p>
+        </div>
+
+        <div class="gifts">
+          <article class="gift">
+            <div class="eyebrow">Opción 01</div>
+            <div class="icon">🎬</div>
+            <h3>Película y abrazos</h3>
+            <p>Tú eliges la peli. Yo pongo los snacks y los abrazos.</p>
+            <button data-gift="Película y abrazos" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+
+          <article class="gift">
+            <div class="eyebrow">Opción 02</div>
+            <div class="icon">☕</div>
+            <h3>Un café sin afán</h3>
+            <p>
+              Un cafecito contigo y una conversación que no queramos terminar.
+            </p>
+            <button data-gift="Un café sin afán" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+
+          <article class="gift">
+            <div class="eyebrow">Opción 03</div>
+            <div class="icon">🍦</div>
+            <h3>Helado y caminadita</h3>
+            <p>Un helado, una caminata de la mano y muchos besitos.</p>
+            <button data-gift="Helado y caminadita" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+
+          <article class="gift">
+            <div class="eyebrow">Opción 04</div>
+            <div class="icon">🧺</div>
+            <h3>Pícnic para dos</h3>
+            <p>Una mantita, algo rico y toda una tarde para nosotros.</p>
+            <button data-gift="Pícnic para dos" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+
+          <article class="gift">
+            <div class="eyebrow">Opción 05</div>
+            <div class="icon">🍝</div>
+            <h3>Una cena especial</h3>
+            <p>Nos ponemos bonitos y salimos a brindar por nosotros.</p>
+            <button data-gift="Una cena especial" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+
+          <article class="gift">
+            <div class="eyebrow">Opción 06</div>
+            <div class="icon">🌅</div>
+            <h3>Un atardecer contigo</h3>
+            <p>Ver caer la tarde abrazados y guardar una fotico del momento.</p>
+            <button data-gift="Un atardecer contigo" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+
+          <article class="gift">
+            <div class="eyebrow">Opción 07</div>
+            <div class="icon">👩‍🍳</div>
+            <h3>Cocinemos juntos</h3>
+            <p>Una receta, música y risas. Si sale mal, pedimos domicilio.</p>
+            <button data-gift="Cocinemos juntos" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+
+          <article class="gift">
+            <div class="eyebrow">Opción 08</div>
+            <div class="icon">🎳</div>
+            <h3>Una cita para jugar</h3>
+            <p>
+              Bolos, videojuegos o jueguitos de mesa. Quien pierda invita el postre.
+            </p>
+            <button data-gift="Una cita para jugar" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+
+          <article class="gift">
+            <div class="eyebrow">Opción 09</div>
+            <div class="icon">🚗</div>
+            <h3>Una escapadita juntos</h3>
+            <p>Un pueblito, nuestra playlist y un día para crear recuerdos.</p>
+            <button data-gift="Una escapadita juntos" aria-pressed="false">
+              Lo quiero guardar &nbsp; ↗
+            </button>
+          </article>
+        </div>
+
+        <p class="small" id="gift-note" aria-live="polite">
+          Puedes elegir las nueve. Mi plan favorito siempre va a ser contigo. 💖
+        </p>
+      </section>
+      <section class="final scene">
+        <div class="end-star">💖</div>
+        <div class="eyebrow">Mi deseo ya está aquí</div>
+        <h2>Más vida.<br />Más sueños.<br /><em>Más tú.</em></h2>
+        <p>
+          Feliz cumpleaños, luz de mi vida.<br />Mi parte favorita de esta historia
+          sigue siendo compartirla contigo.
+        </p>
+        <button class="primary" id="celebrate">Celebrarte una vez más ♡</button>
+      </section>
+    </main>
+    <footer class="footer">
+      Para María José · Hecho con amor, del que se queda.
+    </footer>
+    <dialog id="dialog" class="dialog">
+      <div class="icon">🌸</div>
+      <div class="eyebrow" id="star-number"></div>
+      <h3 id="star-title"></h3>
+      <p id="star-text"></p>
+      <button class="primary" id="close-dialog">Guardar en el corazón ♡</button>
+    </dialog>
+    <div class="toast" id="toast" hidden role="status"></div>
+    <script>
+      "use strict";
+      const $ = (s) => document.querySelector(s),
+        reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      for (let i = 0; i < 18; i++) {
+        const heart = document.createElement("span");
+        heart.className = "floating-heart";
+        heart.textContent = ["💖", "💕", "🌸", "💜", "🌷"][i % 5];
+        heart.style.left = ((i * 37.7) % 100) + "%";
+        heart.style.fontSize = 18 + (i % 4) * 5 + "px";
+        heart.style.animationDuration = 12 + (i % 7) + "s";
+        heart.style.animationDelay = -i * 1.6 + "s";
+        $("#hearts").append(heart);
+      }
+      const messages = [
+        [
+          "Tu sonrisa",
+          "Hay días que cambian con algo tan sencillo como verte sonreír. Ojalá este nuevo año te regale muchísimas razones para hacerlo. Y ojalá yo pueda ser una de ellas.",
+        ],
+        [
+          "Tu esencia",
+          "Me gusta quién eres: cómo piensas, cómo cuidas y cómo sientes. Hoy celebro a esa mujer tan especial que hay detrás de la sonrisa que me encanta.",
+        ],
+        [
+          "Tu abrazo",
+          "Entre tantos lugares en el mundo, tus abrazos son mi lugar favorito. Son el único lugar en el mundo donde deseo estar, y donde realmente puedo ser yo.",
+        ],
+        [
+          "Tus sueños",
+          "Hoy pido por todo eso que te ilusiona, incluso lo que todavía no dices en voz alta. Quiero verte crecer, intentarlo, lograrlo y sentirte orgullosa de ti misma, porque a mi ya me enorgulleces.",
+        ],
+        [
+          "Lo nuestro",
+          "Hemos vivido por mucho, y quiero conservar todo lo bueno. Y ahora, acompañarte en este cumpleaños. Si hay algo que me emociona, es pensar que tenemos aún muchos capítulos y experiencias por vivir juntos.",
+        ],
+        [
+          "Simplemente tú",
+          "Si hoy pudiera agradecer una sola cosa, sería que existes. Antes de nuestra historia, antes de conocernos, el mundo ya tenía algo precioso: a ti. Feliz cumpleaños, María José.",
+        ],
+      ];
+      const seen = new Set();
+      let lastStar;
+      document.querySelectorAll("[data-star]").forEach((b) =>
+        b.addEventListener("click", () => {
+          const i = Number(b.dataset.star);
+          lastStar = b;
+          seen.add(i);
+          b.classList.add("seen");
+          b.setAttribute("aria-label", "Volver a leer: " + messages[i][0]);
+          $("#star-number").textContent = "Flor 0" + (i + 1) + " / 06";
+          $("#star-title").textContent = messages[i][0];
+          $("#star-text").textContent = messages[i][1];
+          $("#dialog").showModal();
+          $("#progress").textContent =
+            seen.size === 6
+              ? "¡Tu jardín está completo! Gracias por llenar mi vida de cosas bonitas. 💖"
+              : seen.size + " de 6 flores descubiertas";
+          chime(i);
+        }),
+      );
+      $("#close-dialog").onclick = () => $("#dialog").close();
+      $("#dialog").addEventListener("close", () => {
+        lastStar?.focus();
+      });
+      $("#dialog").addEventListener("click", (e) => {
+        if (e.target === $("#dialog")) {
+          const r = e.target.getBoundingClientRect();
+          if (
+            e.clientX < r.left ||
+            e.clientX > r.right ||
+            e.clientY < r.top ||
+            e.clientY > r.bottom
+          )
+            e.target.close();
+        }
+      });
+      function confetti() {
+        if (reduce) return;
+        $("#confetti").replaceChildren();
+        for (let i = 0; i < 85; i++) {
+          const p = document.createElement("i");
+          p.className = "petal";
+          p.style.left = Math.random() * 100 + "%";
+          p.style.setProperty("--drift", Math.random() * 220 - 110 + "px");
+          p.style.setProperty("--duration", 3 + Math.random() * 3 + "s");
+          p.style.animationDelay = Math.random() * 0.7 + "s";
+          p.style.background = ["#ff4081", "#c77dff", "#ff8fab", "#ffffff"][
+            i % 4
+          ];
+          p.style.borderRadius = i % 3 ? "1px" : "50%";
+          $("#confetti").append(p);
+          setTimeout(() => p.remove(), 7200);
+        }
+      }
+      $("#blow").onclick = () => {
+        $("#cake").classList.add("blown");
+        $("#cake").setAttribute(
+          "aria-label",
+          "Torta de cumpleaños con la vela apagada",
+        );
+        $("#wish").value = "";
+        $("#wish").hidden = true;
+        document.querySelector('label[for="wish"]').hidden = true;
+        $("#privacy").textContent =
+          "Tu deseo se queda contigo. Ojalá encuentre su camino.";
+        $("#blow").hidden = true;
+        $("#wish-result").hidden = false;
+        $("#wish-result").classList.add("reveal");
+        confetti();
+        chime(4);
+      };
+      $("#open-letter").onclick = () => {
+        $("#open-letter").setAttribute("aria-expanded", "true");
+        $("#closed").hidden = true;
+        $("#letter").hidden = false;
+        $("#letter").classList.add("reveal");
+        $("#letter").tabIndex = -1;
+        $("#letter").focus({ preventScroll: true });
+        $("#letter").scrollIntoView({
+          behavior: reduce ? "instant" : "smooth",
+          block: "start",
+        });
+        chime(2);
+      };
+      let toastTimer;
+      function toast(t) {
+        clearTimeout(toastTimer);
+        $("#toast").textContent = t;
+        $("#toast").hidden = false;
+        toastTimer = setTimeout(() => ($("#toast").hidden = true), 4500);
+      }
+      document.querySelectorAll("[data-gift]").forEach(
+        (b) =>
+          (b.onclick = () => {
+            const selected = b.closest(".gift").classList.toggle("chosen");
+            b.setAttribute("aria-pressed", String(selected));
+            b.textContent = selected
+              ? "Elegido para nosotros ♡"
+              : "Lo quiero guardar ↗";
+            $("#gift-note").textContent =
+              "Haz una captura de tus opciones elegidas y muéstramelos. Esta selección dura mientras la página esté abierta.";
+            if (selected) {
+              toast("Un plan más para vivir juntos. ♡");
+              chime(1);
+            }
+          }),
+      );
+      $("#celebrate").onclick = () => {
+        confetti();
+        toast("¡Feliz cumpleaños, María José! ♡");
+        chime(5);
+      };
+      // Música de caja musical generada aquí mismo: no descarga archivos ni necesita internet.
+      let audioCtx = null,
+        musicOn = false,
+        musicTimer = null,
+        noteIndex = 0;
+      const melody = [
+        60, 64, 67, 72, 71, 67, 64, 62, 65, 69, 74, 72, 69, 65, 64, 67, 71, 76,
+        74, 71, 67, 62, 67, 71, 74, 72, 67, 64, 62, 59, 62, 67,
+      ];
+      function note(midi, duration = 1.5, volume = 0.045) {
+        if (!audioCtx || !musicOn || audioCtx.state !== "running") return;
+        const now = audioCtx.currentTime,
+          o = audioCtx.createOscillator(),
+          g = audioCtx.createGain();
+        o.type = "sine";
+        o.frequency.value = 440 * Math.pow(2, (midi - 69) / 12);
+        g.gain.setValueAtTime(0, now);
+        g.gain.linearRampToValueAtTime(volume, now + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+        o.connect(g);
+        g.connect(audioCtx.destination);
+        o.start(now);
+        o.stop(now + duration + 0.02);
+        o.onended = () => {
+          o.disconnect();
+          g.disconnect();
+        };
+      }
+      function chime(i) {
+        note([72, 76, 79, 81, 84, 88][i], 1.7, 0.06);
+      }
+      function tick() {
+        if (document.hidden) return;
+        note(melody[noteIndex % melody.length], 2.2, 0.05);
+        if (noteIndex % 4 === 0)
+          note([48, 53, 52, 55][Math.floor(noteIndex / 8) % 4], 3, 0.025);
+        noteIndex++;
+      }
+      $("#music").onclick = async () => {
+        try {
+          if (!audioCtx) {
+            const Audio = window.AudioContext || window.webkitAudioContext;
+            if (!Audio) throw Error();
+            audioCtx = new Audio();
+          }
+          if (musicOn) {
+            musicOn = false;
+            clearInterval(musicTimer);
+            await audioCtx.suspend();
+          } else {
+            await audioCtx.resume();
+            musicOn = true;
+            tick();
+            musicTimer = setInterval(tick, 550);
+          }
+          $("#music").textContent = musicOn
+            ? "♫ Pausar música"
+            : "♫ Activar música";
+          $("#music").setAttribute("aria-pressed", String(musicOn));
+        } catch (e) {
+          toast(
+            "La música no está disponible en este navegador. La sorpresa sigue aquí.",
+          );
+        }
+      };
+      document.addEventListener("visibilitychange", () => {
+        if (!audioCtx || !musicOn) return;
+        if (document.hidden) audioCtx.suspend().catch(() => {});
+        else audioCtx.resume().catch(() => {});
+      });
+
+      // Recorrido por escenas, igual que la página original.
+      const scenes = Array.from(document.querySelectorAll("main > .scene"));
+      let sceneIndex = 0;
+      scenes.forEach((scene, i) => {
+        const nav = document.createElement("div");
+        nav.className = "scene-nav";
+        if (i > 0) {
+          const prev = document.createElement("button");
+          prev.className = "back";
+          prev.textContent = "← Volver";
+          prev.onclick = () => showScene(i - 1);
+          nav.append(prev);
+        }
+        if (i > 0 && i < scenes.length - 1) {
+          const next = document.createElement("button");
+          next.textContent =
+            [
+              "",
+              "",
+              "Seguir con mi sorpresa 💕",
+              "Hay algo más para ti 🎁",
+              "Un último detalle 💖",
+            ][i] || "Continuar 💕";
+          next.onclick = () => showScene(i + 1);
+          nav.append(next);
+        }
+        if (i === scenes.length - 1) {
+          const replay = document.createElement("button");
+          replay.className = "back";
+          replay.textContent = "Volver al comienzo 💜";
+          replay.onclick = () => showScene(0);
+          nav.append(replay);
+        }
+        scene.append(nav);
+        const count = document.createElement("div");
+        count.className = "scene-count";
+        count.textContent = "Sorpresa " + (i + 1) + " de " + scenes.length;
+        scene.append(count);
+      });
+      function showScene(index) {
+        sceneIndex = index;
+        scenes.forEach((s, i) => {
+          s.classList.toggle("active", i === index);
+          s.setAttribute("aria-hidden", String(i !== index));
+        });
+        $(".progress").textContent = scenes
+          .map((_, i) => (i <= index ? "💖" : "🤍"))
+          .join("");
+        $(".progress").setAttribute(
+          "aria-label",
+          "Escena " + (index + 1) + " de " + scenes.length,
+        );
+        window.scrollTo({ top: 0, behavior: "instant" });
+        const heading = scenes[index].querySelector("h1,h2");
+        heading.setAttribute("tabindex", "-1");
+        heading.focus({ preventScroll: true });
+      }
+      $("#begin").onclick = () => showScene(1);
+      showScene(0);
+    </script>
+  </body>
+</html>
