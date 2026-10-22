@@ -961,16 +961,16 @@
           </p>
           <p>
             Me gusta conocerte cada día un poquito más. Descubrir tus maneras,
-            conocer y escuchar esas historias que todavía no me has contado 
-            y seguir aprendiendo en que te emociona, qué te preocupa 
-            y qué te hace sentir querida. Me gusta
-            que una conversación contigo pueda empezar con cualquier bobada y
-            terminar siendo lo mejor de mi día. Y que, después de hablar de
-            tantas cosas, todavía me queden ganas de seguir escuchándote.
+            conocer y escuchar esas historias que todavía no me has contado y
+            seguir aprendiendo en que te emociona, qué te preocupa y qué te hace
+            sentir querida. Me gusta que una conversación contigo pueda empezar
+            con cualquier bobada y terminar siendo lo mejor de mi día. Y que,
+            después de hablar de tantas cosas, todavía me queden ganas de seguir
+            escuchándote.
           </p>
           <p>
-            Para este nuevo año de tu vida deseo que tengas motivos para reír
-            a carcajadas. Que tus sueños encuentren espacio. Que te sientas
+            Para este nuevo año de tu vida deseo que tengas motivos para reír a
+            carcajadas. Que tus sueños encuentren espacio. Que te sientas
             querida, amada, escuchada y acompañada. Que podamos celebrar cada
             logro como se merece.
           </p>
@@ -987,12 +987,156 @@
             decir: «¿Te acuerdas?», con ganas de volver a vivirlos.
           </p>
           <p>
-            <strong>Feliz cumpleaños a mi persona favorita.</strong><br />Qué bonito que
-            naciste. Qué suerte que nos encontramos. Y qué ilusión todo lo que
-            todavía nos falta vivir.
+            <strong>Feliz cumpleaños a mi persona favorita.</strong><br />Qué
+            bonito que naciste. Qué suerte que nos encontramos. Y qué ilusión
+            todo lo que todavía nos falta vivir.
           </p>
           <div class="signature">Con amor, Juan Camilo.</div>
         </article>
+        <!-- CARRUSEL DE FOTOS -->
+        <div class="recuerdos">
+          <h3>Pedacitos de nosotros 📸</h3>
+          <p>Mi lugar favorito siempre será contigo.</p>
+
+          <div class="recuerdos-marco">
+            <img
+              id="foto-recuerdo"
+              src="img/recuerdo1.jpeg"
+              alt="Un recuerdo de nosotros"
+            />
+          </div>
+
+          <div class="recuerdos-controles">
+            <button type="button" id="foto-anterior" aria-label="Foto anterior">
+              ❮
+            </button>
+            <span id="foto-contador" aria-live="polite">1 / 7</span>
+            <button
+              type="button"
+              id="foto-siguiente"
+              aria-label="Foto siguiente"
+            >
+              ❯
+            </button>
+          </div>
+        </div>
+
+        <style>
+          .recuerdos {
+            width: 100%;
+            max-width: 440px !important;
+            margin: 35px auto 0;
+            text-align: center;
+          }
+
+          .recuerdos h3 {
+            color: #e91e63;
+            margin-bottom: 8px;
+          }
+
+          .recuerdos > p {
+            font-size: 15px;
+            margin: 0 0 20px;
+          }
+
+          .recuerdos-marco {
+            padding: 10px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px #a0277930;
+            overflow: hidden;
+            touch-action: pan-y;
+          }
+
+          .recuerdos-marco img {
+            display: block;
+            width: 100%;
+            height: clamp(260px, 65vw, 420px);
+            object-fit: contain;
+            background: #fff0f6;
+            border-radius: 16px;
+          }
+
+          .recuerdos-controles {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 18px;
+          }
+
+          .recuerdos-controles button {
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border-radius: 50%;
+          }
+
+          #foto-contador {
+            color: #a02779;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        </style>
+
+        <script>
+          (() => {
+            // Agrega aquí más rutas si quieres incluir otras fotos.
+            const fotos = [
+              "img/recuerdo1.jpeg",
+              "img/recuerdo2.jpeg",
+              "img/recuerdo3.jpeg",
+              "img/recuerdo4.jpeg",
+              "img/recuerdo5.jpeg",
+              "img/recuerdo6.jpeg",
+              "img/recuerdo7.jpeg",
+            ];
+            let actual = 0;
+            const imagen = document.getElementById("foto-recuerdo");
+            const contador = document.getElementById("foto-contador");
+            const marco = document.querySelector(".recuerdos-marco");
+
+            function cambiarFoto(paso) {
+              actual = (actual + paso + fotos.length) % fotos.length;
+              imagen.src = fotos[actual];
+              imagen.alt = `Un recuerdo de nosotros, foto ${actual + 1}`;
+              contador.textContent = `${actual + 1} / ${fotos.length}`;
+            }
+
+            document.getElementById("foto-anterior").onclick = () =>
+              cambiarFoto(-1);
+            document.getElementById("foto-siguiente").onclick = () =>
+              cambiarFoto(1);
+
+            let inicioX = 0;
+            let inicioY = 0;
+
+            marco.addEventListener(
+              "touchstart",
+              (evento) => {
+                inicioX = evento.changedTouches[0].clientX;
+                inicioY = evento.changedTouches[0].clientY;
+              },
+              { passive: true },
+            );
+
+            marco.addEventListener(
+              "touchend",
+              (evento) => {
+                const distanciaX = evento.changedTouches[0].clientX - inicioX;
+                const distanciaY = evento.changedTouches[0].clientY - inicioY;
+
+                if (
+                  Math.abs(distanciaX) > 45 &&
+                  Math.abs(distanciaX) > Math.abs(distanciaY)
+                ) {
+                  cambiarFoto(distanciaX < 0 ? 1 : -1);
+                }
+              },
+              { passive: true },
+            );
+          })();
+        </script>
       </section>
       <section class="chapter divider scene" id="regalos">
         <div class="section-top">
@@ -1085,7 +1229,8 @@
             <div class="icon">🎳</div>
             <h3>Una cita para jugar</h3>
             <p>
-              Bolos, videojuegos o jueguitos de mesa. Quien pierda invita el postre.
+              Bolos, videojuegos o jueguitos de mesa. Quien pierda invita el
+              postre.
             </p>
             <button data-gift="Una cita para jugar" aria-pressed="false">
               Lo quiero guardar &nbsp; ↗
@@ -1112,8 +1257,8 @@
         <div class="eyebrow">Mi deseo ya está aquí</div>
         <h2>Más vida.<br />Más sueños.<br /><em>Más tú.</em></h2>
         <p>
-          Feliz cumpleaños, luz de mi vida.<br />Mi parte favorita de esta historia
-          sigue siendo compartirla contigo.
+          Feliz cumpleaños, luz de mi vida.<br />Mi parte favorita de esta
+          historia sigue siendo compartirla contigo.
         </p>
         <button class="primary" id="celebrate">Celebrarte una vez más ♡</button>
       </section>
